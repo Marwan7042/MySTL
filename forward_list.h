@@ -23,15 +23,12 @@ namespace mstd {
         
     public:
         class iterator {
-            private:
+        private:
             s_node<T> *curr;
-            public:
+        public:
             iterator(s_node<T> *start_node) : curr(start_node) {}
             T& operator*() { return curr->data; }
-            iterator& operator++(){
-                curr = curr->next;
-                return *this;
-            }
+            iterator& operator++(){ curr = curr->next; return *this; }
             bool operator!=(const iterator& other) const { return this->curr != other.curr; }
         };
         

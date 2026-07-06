@@ -22,6 +22,20 @@ namespace mstd {
 
         
         public:
+            class iterator {
+            private:
+                node<T> *curr;
+            public:
+                iterator(node<T> *start_node) : curr(start_node) {}
+                T& operator*() { return curr->data; }
+                iterator& operator++(){ curr = curr->next; return *this;}
+                iterator& operator--(){ curr = curr->prev; return *this; }
+                bool operator!=(const iterator& other) const { return this->curr != other.curr; }
+            };
+
+        iterator begin() { return iterator(head); }
+        iterator end() {return iterator(nullptr); }
+
         list() : head(nullptr), tail(nullptr), _size(0) {}
         
         list(const list& other) : head(nullptr), tail(nullptr), _size(0) {
