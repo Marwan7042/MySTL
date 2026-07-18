@@ -45,16 +45,6 @@ A lightning-fast, collision-resistant Hash Map.
 * **Insertion Sort**: In-place fast sorting for nearly sorted arrays.
 * **Binary Search**: $O(\log N)$ targeted searching algorithm.
 
-## Compilation & Testing
-This project utilizes a `CMake` build system to manage its custom test suite.
-```bash
-mkdir build
-cd build
-cmake ..
-make
-./run_tests
-```
-
 ## Engineering Highlights
 * **Zero Memory Leaks:** Every structure utilizes strict Destructors and `clear()` helpers.
 * **Rule of Five Compliance:** All complex structures safely implement Deep Copies, Move Semantics, and Assignment protections.
