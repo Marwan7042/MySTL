@@ -116,6 +116,7 @@ void test_stack_queue() {
 }
 
 void test_matrix() {
+    using mstd::Matrix;
     std::cout << "[Running matrix tests...]\n";
     Matrix A(2, 3);
     Matrix B(3, 2);

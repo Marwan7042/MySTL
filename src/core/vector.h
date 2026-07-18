@@ -26,7 +26,7 @@ namespace mstd {
 
     public:
         iterator begin() { return data; }
-        iterator end() { return _size; }
+        iterator end() { return data + _size; }
         
         vector() : _size(0), _capacity(1) {
             data = new T[_capacity];
@@ -127,6 +127,18 @@ namespace mstd {
             _size--;
         }
 
+        void reverse() {
+            size_t start = 0;
+            size_t end = _size - 1;
+
+            while (start < end) {
+                T tmp = data[start]; 
+                data[start] = data[end];
+                data[end] = tmp;
+                start++; end--;
+            }
+        }
+
         T& operator[](size_t index) {
             if (index >= _size) throw std::out_of_range("Index out of range.");
             return data[index];
@@ -136,9 +148,17 @@ namespace mstd {
             if (index >= _size) throw std::out_of_range("Index out of range.");
             return data[index];
         }
+
+        bool operator==(const vector& other) const {
+            if (_size != other.size()) return false;
+            for (size_t i = 0; i < _size; i++){
+                if (data[i] == other.data[i]) continue;
+                return false;
+            }
+            return true;
+        }
         
         size_t capacity() const { return _capacity; }
-
         size_t size() const { return _size; }
         void clear() { _size = 0; }
         bool isEmpty() const { return !_size; } 

@@ -1,12 +1,15 @@
-    cmake_minimum_required(VERSION 3.10)
-    project(DSARefresh)
+cmake_minimum_required(VERSION 3.10)
 
-    # use modern C++17
-    set(CMAKE_CXX_STANDARD 17)
-    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+project(MySTL)
 
-    # Tell CMake to compile main.cpp and matrix.cpp into an executable named "main"
-    add_executable(main main.cpp matrix.cpp)
-    
-    # Unit Tests Executable
-    add_executable(run_tests tests.cpp matrix.cpp)
+# Include the library directory first
+add_subdirectory(src/core/)
+
+# Make building tests optional so that other projects including this
+# library via add_subdirectory won't build the tests by default.
+option(MYSTL_BUILD_TESTS "Build MySTL tests" OFF)
+
+if(MYSTL_BUILD_TESTS)
+    add_executable(mystl_tests tests.cpp)
+    target_link_libraries(mystl_tests PRIVATE MySTL)
+endif()
